@@ -33,12 +33,10 @@ public class Dealer extends Player {
 
 	public Card dealCard() {
 		return deck.dealCard();
-
 	}
 
 	public void shuffle(Deck deck) {
 		deck.shuffleDeck();
-
 	}
 
 	public int dealerCardValue() {

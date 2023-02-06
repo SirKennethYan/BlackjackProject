@@ -8,39 +8,35 @@ import com.skilldistillery.blackjack.entities.Deck;
 import com.skilldistillery.blackjack.entities.Player;
 
 public class BlackJackApp {
-	
-	private Scanner scan = new Scanner(System.in);
-	String userInput = scan.nextLine();
-	private Deck theDeck = new Deck();
-	private Dealer dealer;
-	private Player player;
-	
-	public BlackJackApp() {
-		this.dealer = new Dealer(theDeck, new BlackjackHand());
-		this.player = new Player(new BlackjackHand());
-	}
-		
+
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
 		BlackJackApp bja = new BlackJackApp();
-		bja.startApp();
-	}
+		bja.continueApp(scan);
+	}// main
 
-	public void startApp() {
-		System.out.println("*********** Welcome ***********");
-		System.out.println("*********             *********");
-		System.out.println("*******                 *******");
-		System.out.println("*****         To          *****");
-		System.out.println("*******                 *******");
-		System.out.println("*********             *********");
-		System.out.println("********** Blackjack **********");
-		System.out.println("******* (press any key) *******");
-		scan.nextLine();
-		continueApp() ;
-	}//startApp
+//	public void startApp(Scanner scan) {
+//		System.out.println("*********** Welcome ***********");
+//		System.out.println("*********             *********");
+//		System.out.println("*******                 *******");
+//		System.out.println("*****         To          *****");
+//		System.out.println("*******                 *******");
+//		System.out.println("*********             *********");
+//		System.out.println("********** Blackjack **********");
+//		System.out.println("******* (press any key) *******");
+//		
+//		String userInput = scan.nextLine();
+//		userInput = scan.nextLine();
+//	    if (!userInput.isEmpty()) {
+//	        continueApp(scan);
+//	    }
+//	}// startApp
 
-	private void continueApp()  {
+	private void continueApp(Scanner scan) {
 		System.out.println("Press 1 to Play.");
 		System.out.println("Press 2 to Quit.");
+		String userInput = scan.nextLine();
 
 		if (userInput.equals("1")) {
 			startGame(scan);
@@ -48,7 +44,7 @@ public class BlackJackApp {
 			System.out.println("Goodbye.");
 		} else {
 			System.out.println("Invalid input. Choose either 1 or 2.");
-			continueApp() ;
+			continueApp(scan);
 		}
 	}// showMainMenu
 
@@ -93,22 +89,18 @@ public class BlackJackApp {
 ////		if(hit): Dealer deals one card to player face-up... then prompts, 'Hit' or 'Stand'?
 ////		Did Player or Dealer bust?
 				while (true) {
+					String userInput = scan.nextLine();
 					System.out.println("Press 1 to Hit or 2 to Stand? ");
 					System.out.println();
 					if (userInput.equals("1")) {
 						System.out.println("You are dealt " + player.getHand().addCard(dealer.dealCard()).toString());
 						System.out.println("Player hand total: " + player.getHand().getHandValue());
+					} else if (player.getHand().getHandValue() > 21) {
+						System.out.println("Bust!!! You lose. ");
+						System.out.print("Another round? Press 1 for Yes or 2 for No ");
+					} else if (userInput.equals("1")) {
+						startGame(scan);
 
-						if (player.getHand().getHandValue() > 21) {
-							System.out.println("Bust!!! You lose. ");
-							System.out.print("Another round? Press 1 for Yes or 2 for No ");
-
-							if (userInput.equals("1")) {
-								startGame(scan);
-							}
-						} else {
-							continue;
-						}
 ////		Blackjack Time-line: 5
 ////		if(stand): Dealer deals himself one card at a time until Dealer reaches 17.
 ////		Did Player or Dealer bust?
@@ -116,17 +108,17 @@ public class BlackJackApp {
 						System.out.println("Dealer shows face down card: " + dealer.hiddenDealerCardValue());
 						System.out.println("Dealer has a score of : " + dealer.getHand().getHandValue());
 						while (true) {
-							compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue());
+							compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue(), scan);
 							if (dealer.getHand().getHandValue() >= 17 && dealer.getHand().getHandValue() <= 21) {
 								System.out.println("Dealer score is now: " + dealer.getHand().getHandValue());
 								System.out.println();
-								break;
+
 							} else if (dealer.getHand().getHandValue() < 17) {
 
 								while (dealer.getHand().getHandValue() < 17) {
 									if (!(theDeck.checkDeckSize() >= 10)) {
-										break;
 									}
+
 									System.out.println("Dealer is dealt: "
 											+ dealer.getHand().addCard(dealer.dealCard()).toString());
 									System.out.println("Dealer score is now: " + dealer.getHand().getHandValue());
@@ -134,14 +126,13 @@ public class BlackJackApp {
 										System.out.println("Dealer: Bust!");
 										System.out.println("Dealer loses this round.");
 										System.out.println("Player wins!");
-										break;
 
 									}
 
 								}
-								compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue());
+								compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue(), scan);
 								playAnother(scan);
-								break;
+
 							} // else-if
 
 						} // while-loop
@@ -156,7 +147,8 @@ public class BlackJackApp {
 
 	}// startGame
 
-	public void compareCards(int player, int dealer) {
+	public void compareCards(int player, int dealer, Scanner scan) {
+		String userInput = scan.nextLine();
 		String result = "";
 		if (player == dealer) {
 			result = "Push.";
@@ -176,6 +168,7 @@ public class BlackJackApp {
 	}// compareCards
 
 	public void playAnother(Scanner scan) {
+		String userInput = scan.nextLine();
 		System.out.print("Another round? Press 1 for Yes or 2 for No ");
 		userInput = scan.nextLine();
 		if (userInput.equals("1")) {
@@ -192,4 +185,4 @@ public class BlackJackApp {
 		System.exit(0);
 	}// exitProgram
 
-}
+}// class

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Hand {
-	protected List<Card> cards = new ArrayList<Card>();
+	protected List<Card> cards;
 
 	public Hand() {
-
+		cards = new ArrayList<Card>();
 	}
 
 	public Card addCard(Card card) {
@@ -20,8 +20,8 @@ public abstract class Hand {
 	}
 
 	public int getHandValue() {
-		int totalHandValue = 0;
-		return totalHandValue;
+		int totalValue = 0;
+		return totalValue;
 	}
 
 	public List<Card> getCards() {

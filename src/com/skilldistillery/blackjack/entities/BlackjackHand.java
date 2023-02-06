@@ -9,8 +9,8 @@ public class BlackjackHand extends Hand {
 	public int getHandValue() {
 //	What is the value of the total cards in your hand?
 		int totalValue = 0;
-		for (Card card : cards) {
-			totalValue += getHandValue();
+		for (Card card : this.cards) {
+			totalValue += card.getValue();
 		}
 		return totalValue;
 	}
