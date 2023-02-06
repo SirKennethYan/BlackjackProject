@@ -3,6 +3,7 @@ package com.skilldistillery.blackjack.entities;
 public class Player {
 
 	private Hand hand;
+	
 
 	public Player() {
 		super();
@@ -29,5 +30,7 @@ public class Player {
 		}
 		System.out.println("Total value: " + value);
 	}
+	
+	
 
 }
