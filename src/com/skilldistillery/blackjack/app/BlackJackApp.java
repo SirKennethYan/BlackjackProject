@@ -15,7 +15,10 @@ public class BlackJackApp {
 		
 		BlackJackApp bja = new BlackJackApp();
 		bja.startApp(scan);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 3be53764899c717fec2e21c0cec86363e7760a1a
 	}// main
 
 	public void startApp(Scanner scan) {
@@ -28,7 +31,11 @@ public class BlackJackApp {
 		System.out.println("********** Blackjack **********");
 		System.out.println("******* (press any key) *******");
 		
+<<<<<<< HEAD
 		String userInput;
+=======
+		String userInput = scan.nextLine();
+>>>>>>> 3be53764899c717fec2e21c0cec86363e7760a1a
 		userInput = scan.nextLine();
 		if (!userInput.isEmpty()) {
 			System.out.println();
