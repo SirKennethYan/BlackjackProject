@@ -11,27 +11,29 @@ public class BlackJackApp {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-
+		
 		BlackJackApp bja = new BlackJackApp();
-		bja.continueApp(scan);
+		bja.startApp(scan);
 	}// main
 
-//	public void startApp(Scanner scan) {
-//		System.out.println("*********** Welcome ***********");
-//		System.out.println("*********             *********");
-//		System.out.println("*******                 *******");
-//		System.out.println("*****         To          *****");
-//		System.out.println("*******                 *******");
-//		System.out.println("*********             *********");
-//		System.out.println("********** Blackjack **********");
-//		System.out.println("******* (press any key) *******");
-//		
-//		String userInput = scan.nextLine();
-//		userInput = scan.nextLine();
-//	    if (!userInput.isEmpty()) {
-//	        continueApp(scan);
-//	    }
-//	}// startApp
+	public void startApp(Scanner scan) {
+		System.out.println("*********** Welcome ***********");
+		System.out.println("*********             *********");
+		System.out.println("*******                 *******");
+		System.out.println("*****         To          *****");
+		System.out.println("*******                 *******");
+		System.out.println("*********             *********");
+		System.out.println("********** Blackjack **********");
+		System.out.println("******* (press any key) *******");
+		
+		String userInput = scan.nextLine();
+		userInput = scan.nextLine();
+		if (!userInput.isEmpty()) {
+			System.out.println();
+			  continueApp(scan);
+			}
+
+	}// startApp
 
 	private void continueApp(Scanner scan) {
 		System.out.println("Press 1 to Play.");
