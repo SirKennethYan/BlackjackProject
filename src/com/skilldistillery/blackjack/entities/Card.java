@@ -38,7 +38,7 @@ public class Card {
 //	Add a toString which says rank + " of " + suit.
 	@Override
 	public String toString() {
-		return "" + rank + suit + value;
+		return "" + rank + suit;
 	}
 
 	@Override
@@ -70,3 +70,4 @@ public class Card {
 	}
 
 }
+

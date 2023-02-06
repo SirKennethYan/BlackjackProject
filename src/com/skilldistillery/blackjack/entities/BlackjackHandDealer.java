@@ -1,8 +1,8 @@
 package com.skilldistillery.blackjack.entities;
 
-public class BlackjackHand extends Hand {
-
-	public BlackjackHand() {
+public class BlackjackHandDealer extends Hand {
+	
+	public BlackjackHandDealer() {
 	}
 
 	@Override
@@ -33,5 +33,4 @@ public class BlackjackHand extends Hand {
 		}
 		return result;
 	}
-
 }

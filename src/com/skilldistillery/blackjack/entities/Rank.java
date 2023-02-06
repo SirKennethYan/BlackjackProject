@@ -9,8 +9,8 @@ public enum Rank {
 	private String politeName;
 
 	Rank(int num, String name) {
-		value = num;
-		politeName = name;
+		this.value = num;
+		this.politeName = name;
 	}
 
 	public int getValue() {

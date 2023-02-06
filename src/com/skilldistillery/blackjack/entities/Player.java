@@ -2,8 +2,7 @@ package com.skilldistillery.blackjack.entities;
 
 public class Player {
 
-	private Hand hand;
-	
+	private Hand hand = new BlackjackHand();
 
 	public Player() {
 		super();

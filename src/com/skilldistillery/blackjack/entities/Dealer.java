@@ -1,8 +1,8 @@
 package com.skilldistillery.blackjack.entities;
 
-public class Dealer extends Player {
+public class Dealer {
 	private Deck deck;
-	private Hand hand;
+	private Hand hand = new BlackjackHandDealer();
 
 	public Dealer() {
 		super();
@@ -39,22 +39,22 @@ public class Dealer extends Player {
 		deck.shuffleDeck();
 	}
 
-	public int dealerCardValue() {
-		int value = 0;
-		for (int i = 1; i < hand.getCards().size(); i++) {
-			hand.getCards().get(i);
-			value += hand.getCards().get(i).getValue();
-		}
-		return value;
-	}
-
-	public int hiddenDealerCardValue() {
-		int value = 0;
-		for (int i = 0; i < hand.getCards().size() - 1; i++) {
-			System.out.println(hand.getCards().get(i));
-			value = hand.getCards().get(i).getValue();
-		}
-		return value;
-	}
+//	public int dealerCardValue() {
+//		int value = 0;
+//		for (int i = 1; i < hand.getCards().size(); i++) {
+//			hand.getCards().get(i);
+//			value += hand.getCards().get(i).getValue();
+//		}
+//		return value;
+//	}
+	
+//	public int hiddenDealerCardValue() {
+//		int value = 0;
+//		for (int i = 0; i < hand.getCards().size() - 1; i++) {
+//			System.out.println(hand.getCards().get(i));
+//			value = hand.getCards().get(i).getValue();
+//		}
+//		return value;
+//	}
 
 }

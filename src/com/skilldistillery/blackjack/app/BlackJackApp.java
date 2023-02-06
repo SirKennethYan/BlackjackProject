@@ -8,12 +8,14 @@ import com.skilldistillery.blackjack.entities.Deck;
 import com.skilldistillery.blackjack.entities.Player;
 
 public class BlackJackApp {
-
+	Dealer dealer = new Dealer(new Deck(), new BlackjackHand());
+	Player player = new Player(new BlackjackHand());
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
 		BlackJackApp bja = new BlackJackApp();
 		bja.startApp(scan);
+		
 	}// main
 
 	public void startApp(Scanner scan) {
@@ -26,7 +28,7 @@ public class BlackJackApp {
 		System.out.println("********** Blackjack **********");
 		System.out.println("******* (press any key) *******");
 		
-		String userInput = scan.nextLine();
+		String userInput;
 		userInput = scan.nextLine();
 		if (!userInput.isEmpty()) {
 			System.out.println();
@@ -51,18 +53,19 @@ public class BlackJackApp {
 	}// showMainMenu
 
 	private void startGame(Scanner scan) {
-		Dealer dealer = new Dealer(new Deck(), new BlackjackHand());
-		Player player = new Player(new BlackjackHand());
+		player.getHand().clear();
+		dealer.getHand().clear();
 		Deck theDeck = dealer.getDeck();
 
 		while (theDeck.checkDeckSize() >= 10) {
 			dealer.getHand().clear();
-			dealer.getHand().clear();
+			player.getHand().clear();
 
+			
 ////		Blackjack Time-line: 1
 ////		Player Press 1 to play.
 ////		Dealer: Shuffles deck and deals two cards to player + value of both cards.
-			dealer.shuffle(theDeck);
+			dealer.shuffle(theDeck);			
 			System.out.println("You are dealt " + player.getHand().addCard(dealer.dealCard()).toString());
 			System.out.println("and a " + player.getHand().addCard(dealer.dealCard()).toString());
 			System.out.println("Player hand total: " + player.getHand().getHandValue());
@@ -73,9 +76,9 @@ public class BlackJackApp {
 			dealer.getHand().addCard(dealer.dealCard()).toString();
 			System.out.println("Dealer deals two himself two cards, one face-up one face-down. ");
 			System.out.println("Dealer is dealt: " + dealer.getHand().addCard(dealer.dealCard()).toString());
-			System.out.println("Dealer hand total: " + dealer.hiddenDealerCardValue());
-			System.out.println("Dealer hand total: " + dealer.dealerCardValue());
-			System.out.println();
+//			System.out.println("Dealer hand total: " + dealer.getHand().getHandValue());
+//			System.out.println("Dealer hand total: " + dealer.getHand());
+			System.out.println("Press any key to Continue");
 
 ////		Blackjack Time-line: 3
 ////		Did Player or Dealer hit 21?
@@ -97,7 +100,7 @@ public class BlackJackApp {
 					if (userInput.equals("1")) {
 						System.out.println("You are dealt " + player.getHand().addCard(dealer.dealCard()).toString());
 						System.out.println("Player hand total: " + player.getHand().getHandValue());
-					} else if (player.getHand().getHandValue() > 21) {
+					} if (player.getHand().getHandValue() > 21) {
 						System.out.println("Bust!!! You lose. ");
 						System.out.print("Another round? Press 1 for Yes or 2 for No ");
 					} else if (userInput.equals("1")) {
@@ -107,7 +110,7 @@ public class BlackJackApp {
 ////		if(stand): Dealer deals himself one card at a time until Dealer reaches 17.
 ////		Did Player or Dealer bust?
 					} else if (userInput.equals("2")) {
-						System.out.println("Dealer shows face down card: " + dealer.hiddenDealerCardValue());
+//						System.out.println("Dealer shows face down card: " + dealer.hiddenDsealerCardValue());
 						System.out.println("Dealer has a score of : " + dealer.getHand().getHandValue());
 						while (true) {
 							compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue(), scan);
@@ -133,8 +136,9 @@ public class BlackJackApp {
 
 								}
 								compareCards(player.getHand().getHandValue(), dealer.getHand().getHandValue(), scan);
+					
 								playAnother(scan);
-
+								
 							} // else-if
 
 						} // while-loop
@@ -174,6 +178,8 @@ public class BlackJackApp {
 		System.out.print("Another round? Press 1 for Yes or 2 for No ");
 		userInput = scan.nextLine();
 		if (userInput.equals("1")) {
+			player.getHand().clear();
+			dealer.getHand().clear();
 			startGame(scan);
 		} else if (userInput.equals("2")) {
 			System.out.println("Goodbye. ");
