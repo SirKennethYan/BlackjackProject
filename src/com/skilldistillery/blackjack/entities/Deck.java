@@ -6,15 +6,16 @@ import java.util.List;
 
 //	Create a class Deck. 
 public class Deck {
+	private int value;
 //	It will hold a List of Cards.
 	private List<Card> deck = new ArrayList<>();
 
+//	In the constructor, initialize the List with all 52 cards.
 	public Deck() {
 		Rank[] ranks = Rank.values();
 		Suit[] suits = Suit.values();
 
 		for (Suit suit : suits) {
-
 			for (Rank rank : ranks) {
 				Card card = new Card(suit, rank);
 				deck.add(card);
@@ -22,16 +23,24 @@ public class Deck {
 		}
 	}
 
-	public int checkDeckSize() {
-		return deck.size();
+//	Add a method shuffle to shuffle the deck.
+	public void shuffleDeck() {
+		Collections.shuffle(deck);
+
 	}
 
+//	Add a method dealCard that removes a Card from the deck.
 	public Card dealCard() {
 		return deck.remove(0);
 	}
 
-	public void shuffle() {
-		Collections.shuffle(deck);
+//	Add a method checkDeckSize which returns the number of cards still in the deck.
+	public int checkDeckSize() {
+		return deck.size();
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	public List<Card> getDeck() {
@@ -42,6 +51,5 @@ public class Deck {
 		this.deck = deck;
 	}
 
-//	In the constructor, initialize the List with all 52 cards.
-
+	
 }

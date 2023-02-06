@@ -19,6 +19,7 @@ public enum Rank {
 
 	@Override
 	public String toString() {
-		return politeName + " " + value;
+		return politeName + " of ";
 	}
+
 }

@@ -1,16 +1,20 @@
 package com.skilldistillery.blackjack.entities;
 
 import java.util.Objects;
+
 //	Create a class called Card.
 public class Card {
 //	Card has a Suit and Rank. 
 	private Rank rank;
 	private Suit suit;
+	private int value;
 
 	public Card() {
 	}
+
 //	Set these in the constructor.
 	public Card(Suit st, Rank rk) {
+		super();
 		suit = st;
 		rank = rk;
 	}
@@ -34,7 +38,7 @@ public class Card {
 //	Add a toString which says rank + " of " + suit.
 	@Override
 	public String toString() {
-		return "Card [rank=" + rank + ", suit=" + suit + "]";
+		return "" + rank + suit + value;
 	}
 
 	@Override
@@ -52,6 +56,17 @@ public class Card {
 			return false;
 		Card other = (Card) obj;
 		return rank == other.rank && suit == other.suit;
+	}
+	
+	public int getValue() {
+		return value;
+	}
+	
+	public int getPlayerHandValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 }
